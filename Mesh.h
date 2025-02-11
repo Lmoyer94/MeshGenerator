@@ -1,3 +1,7 @@
+#include <cmath>
+#include <fstream>
+#include <string>
+#include <sstream>
 #include <vector>
 
 #define GLM_FORCE_RADIANS

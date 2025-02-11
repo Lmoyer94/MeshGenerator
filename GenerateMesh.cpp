@@ -1,10 +1,9 @@
-#include <fstream>
-#include <sstream>
-
 #include "Mesh.h"
 
 using std::to_string;
 using std::string;
+
+using std::pow;
 
 Mesh create_plane(int width, int height)
 {
@@ -21,18 +20,33 @@ Mesh create_plane(int width, int height)
 		}
 	}
 
-	for (int y = 0; y < height; y++)
+	for (int i = 0; i < output.vertices.size() - 1; i += 2)
 	{
-		for (int x = 0; x < width; x++)
-		{
-			output.indices.push_back(x + y * width);
-			output.indices.push_back((x + 1) + y * width);
-			output.indices.push_back(x + (y + 1) * width);
+		float x1 = output.vertices[i].x;
+		float y1 = output.vertices[i].y;
+		float z1 = output.vertices[i].z;
 
-			output.indices.push_back((x + 1) + y * width);
-			output.indices.push_back((x + 1) + (y + 1) * width);
-			output.indices.push_back(x + (y + 1) * width);
+		for (int j = 1; j < output.vertices.size(); j += 2)
+		{
+			float x2 = output.vertices[j].x;
+			float y2 = output.vertices[j].y;
+			float z2 = output.vertices[j].z;
+
+			float distance1 = pow(x2 - x1, 2) + pow(y2 - y1, 2) + pow(z2 - z1, 2);
+
+			if (distance1 < 0)
+				distance1 *= -1;
+
+			if (distance1 <= 1 and distance1 > 0 and distance1 != 0)
+			{
+				output.indices.push_back(i+1);
+			}
+			else if (distance1 > 1 and distance1 > 0 and distance1 != 0)
+			{
+				output.indices.push_back(i+2);
+			}
 		}
+
 	}
 
 	return output;
@@ -46,30 +60,12 @@ void save_mesh(Mesh mesh)
 
 	for (int i = 0; i < mesh.vertices.size(); i++)
 	{
-		file.write("v ", sizeof(char)*2);
-		str = to_string(mesh.vertices[i].x);
-		file.write(str.c_str(), sizeof(str.c_str()));
-		file.write(" ", 1);
-		str = to_string(mesh.vertices[i].y);
-		file.write(str.c_str(), sizeof(str.c_str()));
-		file.write(" ", 1);
-		str = to_string(mesh.vertices[i].z);
-		file.write(str.c_str(), sizeof(str.c_str()));
-		file.write("\n", 1);
+		file << "v " << mesh.vertices[i].x << " " << mesh.vertices[i].y << " " << mesh.vertices[i].z << "\n";
 	}
 
-	for (int i = 0; i < mesh.indices.size(); i += 3)
+	for (int i = 0; i < mesh.indices.size()-3; i += 3)
 	{
-		file.write("f v", sizeof(char) * 3);
-		str = to_string(mesh.indices[i]);
-		file.write(str.c_str(), sizeof(str.c_str()));
-		file.write(" v", 2);
-		str = to_string(mesh.indices[i+1]);
-		file.write(str.c_str(), sizeof(str.c_str()));
-		file.write(" v", 2);
-		str = to_string(mesh.indices[i+2]);
-		file.write(str.c_str(), sizeof(str.c_str()));
-		file.write("\n", 1);
+		file << "f " << mesh.indices[i] << " " << mesh.indices[i + 1] << " " << mesh.indices[i + 2] << " " << mesh.indices[i + 3] << "\n";
 	}
 
 	file.close();
