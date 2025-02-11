@@ -11,6 +11,7 @@
 
 using glm::vec3;
 using std::vector;
+using std::string;
 
 struct Mesh
 {
@@ -18,5 +19,8 @@ struct Mesh
 	vector<int> indices;
 };
 
-Mesh create_plane(int width, int height);
-void save_mesh(Mesh mesh);
+Mesh create_plane(float width, float height);
+Mesh create_rect(float width, float height, float depth);
+Mesh create_sphere(float radius);
+
+void save_mesh(string filepath, Mesh mesh);

@@ -1,1 +1,7 @@
-﻿  MeshGenerator.vcxproj -> C:\Users\LM94\Documents\Programming\C++\MeshGenerator\x64\Debug\MeshGenerator.exe
+﻿  GenerateMesh.cpp
+C:\Users\LM94\Documents\Programming\C++\MeshGenerator\MeshGenerator\GenerateMesh.cpp(11,7): warning C4101: 'point': unreferenced local variable
+C:\Users\LM94\Documents\Programming\C++\MeshGenerator\MeshGenerator\GenerateMesh.cpp(29,7): warning C4101: 'point': unreferenced local variable
+C:\Users\LM94\Documents\Programming\C++\MeshGenerator\MeshGenerator\GenerateMesh.cpp(80,7): warning C4101: 'point': unreferenced local variable
+  main.cpp
+  Generating Code...
+  MeshGenerator.vcxproj -> C:\Users\LM94\Documents\Programming\C++\MeshGenerator\x64\Debug\MeshGenerator.exe
