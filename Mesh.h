@@ -1,5 +1,6 @@
 #include <cmath>
 #include <fstream>
+#include <numbers>
 #include <string>
 #include <sstream>
 #include <vector>
@@ -19,8 +20,16 @@ struct Mesh
 	vector<int> indices;
 };
 
-Mesh create_plane(float width, float height);
-Mesh create_rect(float width, float height, float depth);
-Mesh create_sphere(float radius);
+
+
+const float TWOPI = 2.0f * std::numbers::pi;
+const float TWOOVERPI = 2.0f / std::numbers::pi;
+
+
+void create_plane(Mesh& mesh, float width, float height);
+void create_rect(Mesh& mesh, float width, float height, float depth);
+void create_sphere(Mesh& mesh, float radius);
+
+void subdivide_mesh(Mesh& mesh, int times);
 
 void save_mesh(string filepath, Mesh mesh);

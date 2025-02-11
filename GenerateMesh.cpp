@@ -5,81 +5,113 @@ using std::string;
 
 using std::pow;
 
-Mesh create_plane(float width, float height)
+void create_plane(Mesh& mesh, float width, float height)
 {
-	Mesh output;
 	vec3 point;
 
-	output.vertices.push_back(vec3(width/2, height/2, 0));
-	output.vertices.push_back(vec3(-width/2, height/2, 0));
-	output.vertices.push_back(vec3(-width/2, -height/2, 0));
-	output.vertices.push_back(vec3(width/2, -height/2, 0));
+	//create vertices
+	mesh.vertices.push_back(vec3(width/2, height/2, 0));
+	mesh.vertices.push_back(vec3(-width/2, height/2, 0));
+	mesh.vertices.push_back(vec3(-width/2, -height/2, 0));
+	mesh.vertices.push_back(vec3(width/2, -height/2, 0));
 
-	output.indices.push_back(1);
-	output.indices.push_back(2);
-	output.indices.push_back(3);
-	output.indices.push_back(4);
+	//create index information
+	mesh.indices.push_back(1);
+	mesh.indices.push_back(2);
+	mesh.indices.push_back(3);
+	mesh.indices.push_back(4);
 
-	return output;
 }
 
-Mesh create_rect(float width, float height, float depth)
+void create_rect(Mesh& mesh, float width, float height, float depth)
 {
-	Mesh output;
 	vec3 point;
 
-	output.vertices.push_back(vec3(width/2, height/2, depth/2));
-	output.vertices.push_back(vec3(-width/2, height/2, depth/2));
-	output.vertices.push_back(vec3(-width/2, -height/2, depth/2));
-	output.vertices.push_back(vec3(width/2, -height/2, depth/2));
+	//create vertices
+	mesh.vertices.push_back(vec3(width/2, height/2, depth/2));
+	mesh.vertices.push_back(vec3(-width/2, height/2, depth/2));
+	mesh.vertices.push_back(vec3(-width/2, -height/2, depth/2));
+	mesh.vertices.push_back(vec3(width/2, -height/2, depth/2));
 
-	output.vertices.push_back(vec3(-width/2, height/2, -depth/2));
-	output.vertices.push_back(vec3(width/2, height/2, -depth/2));
-	output.vertices.push_back(vec3(width/2, -height/2, -depth/2));
-	output.vertices.push_back(vec3(-width/2, -height/2, -depth/2));
-
+	mesh.vertices.push_back(vec3(-width/2, height/2, -depth/2));
+	mesh.vertices.push_back(vec3(width/2, height/2, -depth/2));
+	mesh.vertices.push_back(vec3(width/2, -height/2, -depth/2));
+	mesh.vertices.push_back(vec3(-width/2, -height/2, -depth/2));
 
 
 	//create index information
-	output.indices.push_back(1);
-	output.indices.push_back(2);
-	output.indices.push_back(3);
-	output.indices.push_back(4);
+	mesh.indices.push_back(1);
+	mesh.indices.push_back(2);
+	mesh.indices.push_back(3);
+	mesh.indices.push_back(4);
 
-	output.indices.push_back(6);
-	output.indices.push_back(1);
-	output.indices.push_back(4);
-	output.indices.push_back(7);
+	mesh.indices.push_back(6);
+	mesh.indices.push_back(1);
+	mesh.indices.push_back(4);
+	mesh.indices.push_back(7);
 
-	output.indices.push_back(5);
-	output.indices.push_back(6);
-	output.indices.push_back(7);
-	output.indices.push_back(8);
+	mesh.indices.push_back(5);
+	mesh.indices.push_back(6);
+	mesh.indices.push_back(7);
+	mesh.indices.push_back(8);
 
-	output.indices.push_back(2);
-	output.indices.push_back(5);
-	output.indices.push_back(8);
-	output.indices.push_back(3);
+	mesh.indices.push_back(2);
+	mesh.indices.push_back(5);
+	mesh.indices.push_back(8);
+	mesh.indices.push_back(3);
 
-	output.indices.push_back(6);
-	output.indices.push_back(5);
-	output.indices.push_back(2);
-	output.indices.push_back(1);
+	mesh.indices.push_back(6);
+	mesh.indices.push_back(5);
+	mesh.indices.push_back(2);
+	mesh.indices.push_back(1);
 
-	output.indices.push_back(4);
-	output.indices.push_back(3);
-	output.indices.push_back(8);
-	output.indices.push_back(7);
-
-	return output;
+	mesh.indices.push_back(4);
+	mesh.indices.push_back(3);
+	mesh.indices.push_back(8);
+	mesh.indices.push_back(7);
 }
 
-Mesh create_sphere(float radius)
+void create_sphere(Mesh& mesh, float radius)
 {
-	Mesh output;
 	vec3 point;
 
-	return output;
+	float r = radius;		//radial distance
+	float heading;			//horizontal angle
+	float pitch;			//pitch
+
+	//create vertices
+	for (heading = 0.0f; heading < 360.0f; heading+= 10.0f)
+	{
+		for (pitch = 0.0f; pitch < 360.0f; pitch+= 10.0f)
+		{
+			point = vec3(
+				r * cos(pitch) * cos(heading),
+				r * cos(pitch) * sin(heading),
+				r * sin(pitch));
+
+			mesh.vertices.push_back(point);
+		}
+	}
+
+	for (pitch = 0.0f; pitch < 360.0f; pitch += 1.0f)
+	{
+		for (heading = 0.0f; heading < 360.0f; heading += 1.0f)
+		{
+			point = vec3(
+				r * cos(pitch) * cos(heading),
+				r * cos(pitch) * sin(heading),
+				r * sin(pitch));
+
+			mesh.vertices.push_back(point);
+		}
+	}
+
+
+	//create index information
+	for (int i = 0; i < mesh.vertices.size(); i++)
+	{
+		mesh.indices.push_back(i + 1);
+	}
 }
 
 

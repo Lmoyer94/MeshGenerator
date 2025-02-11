@@ -1,7 +1,10 @@
 ﻿  GenerateMesh.cpp
-C:\Users\LM94\Documents\Programming\C++\MeshGenerator\MeshGenerator\GenerateMesh.cpp(11,7): warning C4101: 'point': unreferenced local variable
-C:\Users\LM94\Documents\Programming\C++\MeshGenerator\MeshGenerator\GenerateMesh.cpp(29,7): warning C4101: 'point': unreferenced local variable
-C:\Users\LM94\Documents\Programming\C++\MeshGenerator\MeshGenerator\GenerateMesh.cpp(80,7): warning C4101: 'point': unreferenced local variable
-  main.cpp
-  Generating Code...
+C:\Users\LM94\Documents\Programming\C++\MeshGenerator\MeshGenerator\Mesh.h(25,26): warning C4305: 'initializing': truncation from 'double' to 'float'
+  (compiling source file 'GenerateMesh.cpp')
+  
+C:\Users\LM94\Documents\Programming\C++\MeshGenerator\MeshGenerator\Mesh.h(26,30): warning C4305: 'initializing': truncation from 'double' to 'float'
+  (compiling source file 'GenerateMesh.cpp')
+  
+C:\Users\LM94\Documents\Programming\C++\MeshGenerator\MeshGenerator\GenerateMesh.cpp(10,7): warning C4101: 'point': unreferenced local variable
+C:\Users\LM94\Documents\Programming\C++\MeshGenerator\MeshGenerator\GenerateMesh.cpp(28,7): warning C4101: 'point': unreferenced local variable
   MeshGenerator.vcxproj -> C:\Users\LM94\Documents\Programming\C++\MeshGenerator\x64\Debug\MeshGenerator.exe
