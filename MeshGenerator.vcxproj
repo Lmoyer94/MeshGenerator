@@ -71,12 +71,12 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(VULKAN_SDK)\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(VULKAN_SDK)\Lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\LM94\Documents\Programming\C++\NoiseGenerator\NoiseGenerator;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\LM94\Documents\Programming\C++\NoiseGenerator\x64\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(VULKAN_SDK)\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(VULKAN_SDK)\Lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\LM94\Documents\Programming\C++\NoiseGenerator\NoiseGenerator;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\LM94\Documents\Programming\C++\NoiseGenerator\x64\Release;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -113,11 +113,12 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>vulkan-1.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>NoiseGenerator.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -135,7 +136,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>vulkan-1.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>NoiseGenerator.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
