@@ -1,11 +1,13 @@
-﻿  main.cpp
+﻿  GenerateMesh.cpp
 C:\Users\LM94\Documents\Programming\C++\NoiseGenerator\NoiseGenerator\Simplex.h(64,12): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-  (compiling source file 'main.cpp')
+  (compiling source file 'GenerateMesh.cpp')
   
 C:\Users\LM94\Documents\Programming\C++\MeshGenerator\MeshGenerator\Mesh.h(67,26): warning C4305: 'initializing': truncation from 'double' to 'float'
-  (compiling source file 'main.cpp')
+  (compiling source file 'GenerateMesh.cpp')
   
 C:\Users\LM94\Documents\Programming\C++\MeshGenerator\MeshGenerator\Mesh.h(68,30): warning C4305: 'initializing': truncation from 'double' to 'float'
-  (compiling source file 'main.cpp')
+  (compiling source file 'GenerateMesh.cpp')
   
+C:\Users\LM94\Documents\Programming\C++\MeshGenerator\MeshGenerator\GenerateMesh.cpp(151,12): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\LM94\Documents\Programming\C++\MeshGenerator\MeshGenerator\GenerateMesh.cpp(258,13): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
   MeshGenerator.vcxproj -> C:\Users\LM94\Documents\Programming\C++\MeshGenerator\x64\Debug\MeshGenerator.exe

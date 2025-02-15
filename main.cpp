@@ -24,7 +24,6 @@ int main()
 	noise4 = noise3 = noise2 = noise1;
 	noise1.GenerateNoise(vec2(0, 0));
 	noise2.GenerateNoise(vec2(129, 0));
-	SaveBMP(noise2.GetTexture(), 129, 129);
 	noise3.GenerateNoise(vec2(0, 129));
 	noise4.GenerateNoise(vec2(129, 129));
 
