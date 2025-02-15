@@ -138,6 +138,8 @@ void create_rect(Mesh& mesh, float width, float height, float depth)
 
 void subdivide_mesh(Mesh& mesh, int times = 1)
 {
+	Mesh temp;
+
 	/*********************************************
 	*************** SUBDIVIDE MESH ***************
 	*********************************************/
@@ -199,16 +201,20 @@ void subdivide_mesh(Mesh& mesh, int times = 1)
 	******************** OPTIMIZE MESH ********************
 	******************************************************/
 	//remove duplicate vertices
-	cout << "Removing duplicate vertices. This may take some time. There will be no progress bar to optimize time." << "\n";
+	cout << "Removing duplicate vertices. This may take some time." << "\n";
 
 	for (int i = 0; i < mesh.vertices.size(); i++)
 	{
 		for (int j = i+1; j < mesh.vertices.size(); j++)
 		{
 			if (mesh.vertices[j] == mesh.vertices[i])
+			{
 				mesh.vertices.erase(mesh.vertices.begin() + j);
+			}
 		}
 	}
+
+	cout << "Vertices : " << mesh.vertices.size() << "\n";
 
 	//assign vertices a number based on position in final mesh
 	cout << "Assigning each vertex a specific ID." << "\n";
@@ -218,7 +224,7 @@ void subdivide_mesh(Mesh& mesh, int times = 1)
 		mesh.vertices[i].id = vertex_iterator++;
 	}
 
-	cout << "Indexing vertices of each face. This may take some time. There will be no progress bar to optimize time." << "\n";
+	cout << "Indexing vertices of each face. This may take some time." << "\n";
 	//index face vertices
 	for (int i = 0; i < mesh.faces.size(); i++)
 	{
@@ -243,6 +249,8 @@ void subdivide_mesh(Mesh& mesh, int times = 1)
 			}
 		}
 	}
+
+	cout << "Faces : " << mesh.faces.size() << "\n";
 }
 
 float calculate_distance(Vertex v1, Vertex v2)
@@ -253,7 +261,6 @@ float calculate_distance(Vertex v1, Vertex v2)
 void save_mesh(string filepath, Mesh& mesh)
 {
 	std::ofstream file(filepath);
-	std::string str;
 
 	cout << "Writing vertices to file. This may take some time. There will be no progress bar to optimize time." << "\n";
 	for (int i = 0; i < mesh.vertices.size(); i++)
@@ -307,8 +314,6 @@ void load_mesh(string filepath, Mesh& mesh)
 	}
 }
 
-
-
 void apply_heightmap(SimplexNoise noise, Mesh& mesh, int width, int height)
 {
 	std::vector<float> texture = noise.GetTexture();
@@ -322,7 +327,7 @@ void apply_heightmap(SimplexNoise noise, Mesh& mesh, int width, int height)
 		{
 			for (int i = 0; i < mesh.vertices.size(); i++)
 			{
-				if ((mesh.vertices[i].x == (x + 1)) and (mesh.vertices[i].y == (y + 1)))
+				if ((mesh.vertices[i].x == x) and (mesh.vertices[i].y == y))
 				{
 					mesh.vertices[i].z = texture[(y * width) + x] * magnitude;
 					break;
