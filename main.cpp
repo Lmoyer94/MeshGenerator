@@ -1,6 +1,7 @@
 #include "Mesh.h"
 #include <TextureSaver.h>
 
+#include <sstream>
 #include <thread>
 #include <chrono>
 
@@ -8,9 +9,37 @@ using std::thread;
 using std::ref;
 using std::chrono::steady_clock;
 
+const int blocks_wide = 32;
+const int blocks_high = 32;
+
+
 int main()
 {
 	steady_clock::time_point begin = steady_clock::now();
+
+	Mesh plane;
+	load_mesh("plane128x128.obj", plane);
+	SimplexNoise noise(vec2(129, 129), 1.0f, 1.0f, 2.0f, 0.5f, 3, 0.0025f);
+
+
+	for (int y = 0; y < blocks_high; y++)
+	{
+		for (int x = 0; x < blocks_wide; x++)
+		{
+			Mesh terrain;
+			terrain = plane;
+
+			noise.GenerateNoise(vec2(blocks_wide * x, blocks_high * y));
+			apply_heightmap(noise, terrain, 129, 129);
+
+			std::stringstream filename;
+			filename << "terrain" << (x + 1) << "-" << (y + 1) << ".obj";
+			save_mesh(filename.str(), terrain);
+		}
+	}
+
+
+	/*
 
 	//load mesh
 	Mesh plane;
@@ -48,6 +77,8 @@ int main()
 	save2.join();
 	save3.join();
 	save4.join();
+
+	*/
 
 	steady_clock::time_point end = steady_clock::now();
 	cout << "Time elapsed (sec) : " << (std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count()) / 1000000.0 << "\n";
